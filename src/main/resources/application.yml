@@ -1,0 +1,40 @@
+spring:
+  datasource:
+    #mariadb 사용
+    driver-class-name: org.mariadb.jdbc.Driver
+    #testdb은 database를 의미합니다.
+    url: jdbc:mariadb://localhost:3306/testdb
+    username: root
+    password: root
+
+  jpa:
+    #JPA 데이터베이스 플랫폼을 지정합니다.
+    database-platform: org.hibernate.dialect.MariaDBDialect
+    #
+    open-in-view: false
+    #콘솔에 JPA 실행 쿼리를 출력합니다.
+    show-sql: true
+    hibernate:
+      #콘솔에 출력되는 JPA 실행 쿼리를 가독성있게 표현합니다.
+      format_sql: true
+        #데이터베이스 초기화 전략을 설정합니다.
+        #none
+        #아무것도 실행하지 않습니다.
+        #create
+        #SessionFactory가 시작될 때 기존테이블을 삭제 후 다시 생성합니다.
+        #create-drop
+        #create와 같으나 SessionFactory가 종료될 때 drop을 실행합니다.
+        #update
+      #변경된 스키마만 반영합니다.
+      ddl-auto: create
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            #SQL에서 물음표로 표기된 부분( bind parameter )을 로그로 출력해서 확인할 수 있습니다.
+            sql:
+              BasicBinder: TRACE
