@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 @AllArgsConstructor
 public class MemberController {
+
     private MemberService memberService;
 
     // 메인 페이지
@@ -29,6 +30,7 @@ public class MemberController {
     public String execSignup(MemberDto memberDto) {
         memberService.joinUser(memberDto);
 
+        //회원가입이 완료되면 로그인 페이지로 보내주기
         return "redirect:/user/login";
     }
 

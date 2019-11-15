@@ -1,32 +1,36 @@
+#logging.level.org.springframework=DEBUG
+server:
+  port: 8082
+
 spring:
   datasource:
-    #mariadb »ç¿ë
+    #mariadb ï¿½ï¿½ï¿½
     driver-class-name: org.mariadb.jdbc.Driver
-    #testdbÀº database¸¦ ÀÇ¹ÌÇÕ´Ï´Ù.
-    url: jdbc:mariadb://localhost:3306/testdb
+    #testdbï¿½ï¿½ databaseï¿½ï¿½ ï¿½Ç¹ï¿½ï¿½Õ´Ï´ï¿½.
+    url: jdbc:mariadb://localhost:3306/oauthserver
     username: root
     password: root
 
   jpa:
-    #JPA µ¥ÀÌÅÍº£ÀÌ½º ÇÃ·§ÆûÀ» ÁöÁ¤ÇÕ´Ï´Ù.
+    #JPA ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
     database-platform: org.hibernate.dialect.MariaDBDialect
     #
     open-in-view: false
-    #ÄÜ¼Ö¿¡ JPA ½ÇÇà Äõ¸®¸¦ Ãâ·ÂÇÕ´Ï´Ù.
+    #ï¿½Ü¼Ö¿ï¿½ JPA ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
     show-sql: true
     hibernate:
-      #ÄÜ¼Ö¿¡ Ãâ·ÂµÇ´Â JPA ½ÇÇà Äõ¸®¸¦ °¡µ¶¼ºÀÖ°Ô Ç¥ÇöÇÕ´Ï´Ù.
+      #ï¿½Ü¼Ö¿ï¿½ ï¿½ï¿½ÂµÇ´ï¿½ JPA ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö°ï¿½ Ç¥ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
       format_sql: true
-        #µ¥ÀÌÅÍº£ÀÌ½º ÃÊ±âÈ­ Àü·«À» ¼³Á¤ÇÕ´Ï´Ù.
+        #ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ ï¿½Ê±ï¿½È­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
         #none
-        #¾Æ¹«°Íµµ ½ÇÇàÇÏÁö ¾Ê½À´Ï´Ù.
+        #ï¿½Æ¹ï¿½ï¿½Íµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.
         #create
-        #SessionFactory°¡ ½ÃÀÛµÉ ¶§ ±âÁ¸Å×ÀÌºíÀ» »èÁ¦ ÈÄ ´Ù½Ã »ý¼ºÇÕ´Ï´Ù.
+        #SessionFactoryï¿½ï¿½ ï¿½ï¿½ï¿½Ûµï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
         #create-drop
-        #create¿Í °°À¸³ª SessionFactory°¡ Á¾·áµÉ ¶§ dropÀ» ½ÇÇàÇÕ´Ï´Ù.
+        #createï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ SessionFactoryï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ dropï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
         #update
-      #º¯°æµÈ ½ºÅ°¸¶¸¸ ¹Ý¿µÇÕ´Ï´Ù.
-      ddl-auto: create
+      #ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å°ï¿½ï¿½ï¿½ï¿½ ï¿½Ý¿ï¿½ï¿½Õ´Ï´ï¿½.
+      ddl-auto: update
 
 logging:
   level:
@@ -35,6 +39,6 @@ logging:
         SQL: DEBUG
         type:
           descriptor:
-            #SQL¿¡¼­ ¹°À½Ç¥·Î Ç¥±âµÈ ºÎºÐ( bind parameter )À» ·Î±×·Î Ãâ·ÂÇØ¼­ È®ÀÎÇÒ ¼ö ÀÖ½À´Ï´Ù.
+            #SQLï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¥ï¿½ï¿½ Ç¥ï¿½ï¿½ï¿½ ï¿½Îºï¿½( bind parameter )ï¿½ï¿½ ï¿½Î±×·ï¿½ ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ È®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½.
             sql:
               BasicBinder: TRACE

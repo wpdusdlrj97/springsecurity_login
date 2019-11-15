@@ -22,6 +22,7 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class MemberService implements UserDetailsService {
+
     private MemberRepository memberRepository;
 
     @Transactional
@@ -30,6 +31,9 @@ public class MemberService implements UserDetailsService {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         memberDto.setPassword(passwordEncoder.encode(memberDto.getPassword()));
 
+        //save()
+        //JpaRepository에 정의된 메서드로, DB에 INSERT, UPDATE를 담당합니다.
+        //매개변수로는 Entity를 전달합니다.
         return memberRepository.save(memberDto.toEntity()).getId();
     }
 

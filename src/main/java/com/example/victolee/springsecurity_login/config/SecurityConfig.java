@@ -17,10 +17,13 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 //@Configuration 클래스에 @EnableWebSecurity 어노테이션을 추가하여 Spring Security 설정할 클래스라고 정의합니다.
 //설정은 WebSebSecurityConfigurerAdapter 클래스를 상속받아 메서드를 구현하는 것이 일반적인 방법입니다.
 @EnableWebSecurity
+//@EnableWebSecurity 어노테이션을 추가함으로써 spring security를 직접 커스텀할 수 있다
 @AllArgsConstructor
+public class SecurityConfig extends WebSecurityConfigurerAdapter { //WebSecurityConfigurer 인스턴스를 편리하게 생성하기 위한 클래스입니다.
 
-//WebSecurityConfigurer 인스턴스를 편리하게 생성하기 위한 클래스입니다.
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    //로그인 처리 즉, 인증을 위해서는 UserDetailService를 통해서 필요한 정보들을 가져오는데,
+    //예제에서는 서비스 클래스(memberService)에서 이를 처리합니다.
+    //@AllArgsConstructor 덕분에 바로 가져올 수있다
     private MemberService memberService;
 
     @Bean
@@ -28,12 +31,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    //다음으로 configure() 메서드를 오버라이딩하여, Security 설정을 잡아줍니다.
 
-    //configure(WebSecurity web)
-    //WebSecurity는 FilterChainProxy를 생성하는 필터입니다.
+    //다음으로 configure() 메서드를 오버라이딩하여, Security 설정을 잡아줍니다.
     @Override
-    public void configure(WebSecurity web) {
+    public void configure(WebSecurity web) { //WebSecurity는 FilterChainProxy를 생성하는 필터입니다.
         //web.ignoring().antMatchers("/css/**", "/js/**", "/img/**", "/lib/**");
         //해당 경로의 파일들은 Spring Security가 무시할 수 있도록 설정합니다.
         //즉, 이 파일들은 무조건 통과하며, 파일 기준은 resources/static 디렉터리입니다.
